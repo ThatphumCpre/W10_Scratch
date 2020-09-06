@@ -63,7 +63,12 @@ public class Arrow {
   
   public void drawArrow(float x, float y) {
     strokeWeight(10);
-  
-    line(centerX, centerY, x, y);
+    float zeta = atan((centerY-y)/(centerX-x));
+    if (y>centerY && x>centerX) {
+      zeta+=PI;
+    } else if (y<centerY && x>centerX) {
+      zeta+=-PI;
+    }
+    line(centerX, centerY, centerX-cos(zeta)*size, centerY-sin(zeta)*size);
   }
 }
